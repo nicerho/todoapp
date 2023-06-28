@@ -1,0 +1,7 @@
+1. 내가 브라우저에서 localhost:8080/login을 입력
+2. 디스패처 서블릿은 적절한 컨트롤러 메서드를 식별.
+3. /login 을 보고 LoginController는 자기가 그걸 처리한다고 반응
+4. LoginController는 loginJsp메서드를 실행 데이터(이름)을 모델에 넣음
+5. login이라는 view를 반환
+6. 디스패처 서블릿은 뷰 리졸버를 이용 application.properties에 설정해놓은 설정을 참고, 적절한 이름을 작성 후 출력..
+7. 맞나 몰루
