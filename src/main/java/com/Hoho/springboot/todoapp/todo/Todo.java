@@ -2,13 +2,23 @@ package com.Hoho.springboot.todoapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+@Entity
 public class Todo {
+	public Todo () {
+		
+	}
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
-	
-	@Size(min=5,message="Enter atleast 5 characters")
+
+	@Size(min = 5, message = "Enter atleast 5 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
