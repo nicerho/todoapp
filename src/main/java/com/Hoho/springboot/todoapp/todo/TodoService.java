@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TodoService {
 	private static List<Todo> todos = new ArrayList<>();
@@ -18,7 +20,9 @@ public class TodoService {
 	}
 
 	public List<Todo> findByUsername(String username) {
-		return todos;
+		Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+		
+		return todos.stream().filter(predicate).toList();
 	}
 
 	public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
@@ -37,5 +41,11 @@ public class TodoService {
 		Todo todo = todos.stream().filter(predicate).findFirst().get();
 		return todo;
 
+	}
+
+	public void updateTodo(@Valid Todo todo) {
+		deleteById(todo.getId());
+		todos.add(todo);
+		
 	}
 }
